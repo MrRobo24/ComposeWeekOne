@@ -21,7 +21,13 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -40,9 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
-
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     @Composable
     fun MyApp(
@@ -66,10 +69,8 @@ class MainActivity : AppCompatActivity() {
             modifier = Modifier.fillMaxWidth()
         ) {
 
-
             items(puppies) { puppy ->
                 PuppyRow(puppy)
-
             }
         }
     }
@@ -79,18 +80,19 @@ class MainActivity : AppCompatActivity() {
         puppy: PuppyModel
     ) {
 
-
         Card(
             shape = RoundedCornerShape(4.dp),
             backgroundColor = Color(0xFFF0D6D6),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .clickable(onClick = {
-                    val intent = Intent(this@MainActivity, PuppyDesc::class.java)
-                    Data.curr = puppy
-                    startActivity(intent)
-                })
+                .clickable(
+                    onClick = {
+                        val intent = Intent(this@MainActivity, PuppyDesc::class.java)
+                        Data.curr = puppy
+                        startActivity(intent)
+                    }
+                )
         ) {
             Row {
 
@@ -112,12 +114,9 @@ class MainActivity : AppCompatActivity() {
                     ),
                     textAlign = TextAlign.Center
                 )
-
             }
         }
-
     }
-
 
     @Composable
     fun MyDescription(puppy: PuppyModel) {
@@ -151,12 +150,9 @@ class MainActivity : AppCompatActivity() {
                         textAlign = TextAlign.Center
                     )
                 }
-
-
             }
         }
     }
-
 
     @Preview("Light Theme", widthDp = 360, heightDp = 640)
     @Composable
